@@ -4,14 +4,11 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
-it('has errors if the details are not provided', closure: function () {
-    $this->post('/register')
-        ->assertSessionHasErrors([
-            'name',
-            'email',
-            'password',
-        ]);
-});
+it('shows the register page')->get('/auth/register')->assertOk();
+
+it('has errors if the details are not provided')
+    ->post('/register')
+    ->assertSessionHasErrors(['name', 'email', 'password',]);
 
 it('register the user', closure: function () {
     $this->post('/register', [
