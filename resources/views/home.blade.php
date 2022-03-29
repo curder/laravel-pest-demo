@@ -1,11 +1,11 @@
 <x-layouts.app>
+    @guest
+        <x-slot name="header">Bookfriends</x-slot>
 
-    <x-slot name="header">Home</x-slot>
 
-
-    <div class="mt-6">
-        Hello world
-    </div>
-
+        <div class="mt-6">
+            Sign up to get started.
+        </div>
+    @endguest
 
 </x-layouts.app>
