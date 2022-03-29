@@ -13,9 +13,11 @@ class UpdateUserPassword implements UpdatesUserPasswords
     /**
      * Validate and update the user's password.
      *
-     * @param  mixed  $user
+     * @param  \App\Models\User  $user
      * @param  array  $input
+     *
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update($user, array $input)
     {
