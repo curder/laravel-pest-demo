@@ -53,7 +53,7 @@
                     <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Login</a>
                 </li>
                 <li>
-                    <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Register</a>
+                    <a href="{{ route('register') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Register</a>
                 </li>
             </ul>
         @endguest
