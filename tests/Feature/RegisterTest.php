@@ -11,7 +11,8 @@ it('has errors if the details are not provided')
     ->post('/register')
     ->assertSessionHasErrors(['name', 'email', 'password',]);
 
-it('register the user')->tap(callable: fn() => post('/register', [
+it('register the user')->tap(
+    callable: fn () => post('/register', [
         'name' => 'Mable',
         'email' => 'mable@example.com',
         'password' => 'password',

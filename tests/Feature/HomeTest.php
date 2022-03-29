@@ -14,9 +14,9 @@ it('greets the user if they are signed out', closure: function () {
 });
 
 it('shows authenticated menu items if the user is signed in', closure: function () {
-   $user = User::factory()->create();
+    $user = User::factory()->create();
 
-   $this->actingAs($user)
+    $this->actingAs($user)
         ->get('/')
         ->assertSeeTextInOrder([
             $user->name,

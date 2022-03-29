@@ -47,6 +47,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     protected function passwordRules(): array
     {
-        return ['required', 'string', new Password];
+        return ['required', 'string', new Password()];
     }
 }
