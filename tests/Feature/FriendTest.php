@@ -40,6 +40,7 @@ it('shows a list of users accepted friends', closure: function () {
 
     $friends->each(function ($friend) use ($user) {
         $user->addFriend($friend);
+
         return $friend->acceptFriend($user);
     });
 

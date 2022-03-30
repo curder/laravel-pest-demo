@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class FriendIndexController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth']);
@@ -15,7 +14,7 @@ class FriendIndexController extends Controller
 
     public function __invoke(Request $request): View
     {
-        $pending_friends    = $request->user()?->pendingFriendsOfMine;
+        $pending_friends = $request->user()?->pendingFriendsOfMine;
         $requesting_friends = $request->user()?->pendingFriendsOf;
         $friends = $request->user()?->friends;
 
