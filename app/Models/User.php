@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -58,7 +59,7 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
-    public function getFriendsAttribute()
+    public function getFriendsAttribute(): Collection
     {
         return $this->acceptedFriendsOfMine->merge($this->acceptedFriendsOf);
     }
@@ -68,6 +69,11 @@ class User extends Authenticatable
         $this->friendsOfMine()->syncWithPivotValues($friend, [
             'accepted' => false,
         ], false);
+    }
+
+    public function removeFriend(User $friend): void
+    {
+        $this->friendsOfMine()->detach($friend);
     }
 
     public function acceptFriend(User $friend): void
