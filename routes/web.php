@@ -1,32 +1,41 @@
 <?php
 
-use App\Http\Controllers\BookPutController;
-use App\Http\Controllers\FeedIndexController;
-use App\Http\Controllers\FriendDestroyController;
-use App\Http\Controllers\FriendIndexController;
-use App\Http\Controllers\FriendPatchController;
-use App\Http\Controllers\FriendStoreController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BookPutController;
 use App\Http\Controllers\BookEditController;
 use App\Http\Controllers\BookStoreController;
+use App\Http\Controllers\FeedIndexController;
 use App\Http\Controllers\BookCreateController;
 use App\Http\Controllers\RegisterIndexController;
+use App\Http\Controllers\FriendIndexController;
+use App\Http\Controllers\FriendPatchController;
+use App\Http\Controllers\FriendStoreController;
+use App\Http\Controllers\FriendDestroyController;
 
 Route::get('/', HomeController::class)->name('index');
 
-Route::get('auth/register', RegisterIndexController::class)->name('register');
-Route::get('auth/login', LoginController::class)->name('login');
+Route::middleware(['guest'])->prefix('auth')->group(function() {
+    Route::get('register', RegisterIndexController::class)->name('register');
+    Route::get('login', LoginController::class)->name('login');
+});
 
-Route::put('books/{book}', BookPutController::class)->name('books.update');
-Route::get('books/create', BookCreateController::class)->name('books.create');
-Route::post('books', BookStoreController::class)->name('books.store');
-Route::get('books/{book}/edit', BookEditController::class)->name('books.edit');
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('books')->as('books.')->group(function() {
+        Route::put('{book}', BookPutController::class)->name('update');
+        Route::get('create', BookCreateController::class)->name('create');
+        Route::post('/', BookStoreController::class)->name('store');
+        Route::get('{book}/edit', BookEditController::class)->name('edit');
+    });
 
-Route::get('friends', FriendIndexController::class)->name('friends.index');
-Route::post('friends', FriendStoreController::class)->name('friends.store');
-Route::patch('friends/{friend}', FriendPatchController::class)->name('friends.update');
-Route::delete('friends/{friend}', FriendDestroyController::class)->name('friends.destroy');
+    Route::prefix('friends')->as('friends.')->group(function() {
+        Route::get('', FriendIndexController::class)->name('index');
+        Route::post('', FriendStoreController::class)->name('store');
+        Route::patch('{friend}', FriendPatchController::class)->name('update');
+        Route::delete('{friend}', FriendDestroyController::class)->name('destroy');
+    });
 
-Route::get('feeds', FeedIndexController::class)->name('feeds.index');
+    Route::get('feeds', FeedIndexController::class)->name('feeds.index');
+});

@@ -9,11 +9,6 @@ use Illuminate\Validation\Rule;
 
 class FriendStoreController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-
     public function __invoke(Request $request): RedirectResponse
     {
         $request->validate([

@@ -8,11 +8,6 @@ use Illuminate\Http\RedirectResponse;
 
 class BookPutController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-
     public function __invoke(Book $book, BookPutRequest $request): RedirectResponse
     {
         $book->update($request->only(['title', 'author'])); // 更新books
