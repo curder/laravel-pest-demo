@@ -6,7 +6,7 @@
     <div class="mt-4 space-y-3">
 
         @foreach($friends as $friend)
-            {{ $friend->name }}
+            {{ $friend->name }} ({{ $friend->email }})
         @endforeach
 
     </div>

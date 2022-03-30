@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookPutController;
 use App\Http\Controllers\FriendIndexController;
+use App\Http\Controllers\FriendPatchController;
 use App\Http\Controllers\FriendStoreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -21,6 +22,6 @@ Route::get('books/create', BookCreateController::class)->name('books.create');
 Route::post('books', BookStoreController::class)->name('books.store');
 Route::get('books/{book}/edit', BookEditController::class)->name('books.edit');
 
-
 Route::get('friends', FriendIndexController::class)->name('friends.index');
 Route::post('friends', FriendStoreController::class)->name('friends.store');
+Route::patch('friends/{friend}', FriendPatchController::class)->name('friends.update');
