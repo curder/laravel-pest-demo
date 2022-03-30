@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookPutController;
 use App\Http\Controllers\FriendIndexController;
+use App\Http\Controllers\FriendStoreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -22,3 +23,4 @@ Route::get('books/{book}/edit', BookEditController::class)->name('books.edit');
 
 
 Route::get('friends', FriendIndexController::class)->name('friends.index');
+Route::post('friends', FriendStoreController::class)->name('friends.store');
