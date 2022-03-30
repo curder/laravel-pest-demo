@@ -18,6 +18,8 @@ class BookPutController extends Controller
 
     public function __invoke(Book $book, Request $request): Redirector
     {
+        $this->authorize('update', $book);
+
         $request->validate([
             'title' => 'required',
             'author' => 'required',
@@ -26,10 +28,6 @@ class BookPutController extends Controller
                 Rule::in(array_keys(BookUser::$statuses))
             ],
         ]);
-
-        if (!$book = $request->user()->books->find($book->id)) {
-            abort(403);
-        }
 
         $book->update($request->only(['title', 'author'])); // 更新books
         $request->user()->books()->updateExistingPivot($book, [

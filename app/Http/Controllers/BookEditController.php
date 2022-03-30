@@ -16,9 +16,8 @@ class BookEditController extends Controller
 
     public function __invoke(Book $book, Request $request): View
     {
-        if (!$book = $request->user()->books->find($book->id)) {
-            abort(403);
-        }
+        $this->authorize('update', $book);
+        $book = $request->user()->books->find($book->id);
 
         return view('books.edit', compact('book'));
     }

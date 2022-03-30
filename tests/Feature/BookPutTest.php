@@ -32,13 +32,10 @@ it('false if the user does not own the book', function () {
     ]);
 
     actingAs($user)
-        ->put('/books/' . $book->id, [
-            'title' => 'New Title',
-            'author' => 'New Author',
-            'status' => 'WANT_TO_READ',
-        ])
+        ->put('/books/' . $book->id)
         ->assertForbidden();
 });
+
 it('updates the book', function () {
 
     $user = User::factory()->create();
