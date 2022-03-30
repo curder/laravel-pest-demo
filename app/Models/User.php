@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Pivot\BookUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -50,5 +51,37 @@ class User extends Authenticatable
                     ->using(BookUser::class)
                     ->withPivot(['status'])
                     ->withTimestamps();
+    }
+
+    public function addFriend(User $friend): void
+    {
+        $this->friendsOfMine()->syncWithPivotValues($friend, [
+            'accepted' => false,
+        ], false);
+    }
+
+    public function friendsOfMine(): BelongsToMany
+    {
+       return $this->belongsToMany(__CLASS__, 'friends', 'user_id', 'friend_id')
+                   ->withPivot('accepted')
+                   ->withTimestamps();
+    }
+
+    public function friendsOf(): BelongsToMany
+    {
+        return $this->belongsToMany(__CLASS__, 'friends', 'friend_id', 'user_id')
+                    ->withPivot('accepted')
+                    ->withTimestamps();
+    }
+
+
+    public function pendingFriendsOfMine(): BelongsToMany
+    {
+        return $this->friendsOfMine()->wherePivot('accepted', false);
+    }
+
+    public function pendingFriendsOf(): BelongsToMany
+    {
+        return $this->friendsOf()->wherePivot('accepted', false);
     }
 }
