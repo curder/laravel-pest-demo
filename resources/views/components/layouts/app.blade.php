@@ -27,7 +27,7 @@
                     <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">My books</a>
                 </li>
                 <li>
-                    <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Add a books</a>
+                    <a href="{{ route('books.create') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Add a books</a>
                 </li>
                 <li>
                     <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Friend</a>
