@@ -3,12 +3,6 @@
 name: Test Laravel Github action
 on:
   push:
-    branches:
-      - 9.x
-
-  pull_request:
-    branches:
-      - 9.x
 
 jobs:
   laravel-tests:
