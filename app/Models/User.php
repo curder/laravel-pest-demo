@@ -11,6 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property integer $id
+ *
+ * @property \Illuminate\Support\Collection $books
  */
 class User extends Authenticatable
 {
@@ -48,7 +50,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function books()
+    public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class)
                     ->using(BookUser::class)

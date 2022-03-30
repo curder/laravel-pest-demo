@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+
 class LoginController extends Controller
 {
     public function __construct()
@@ -9,7 +11,7 @@ class LoginController extends Controller
         $this->middleware(['guest']);
     }
 
-    public function __invoke()
+    public function __invoke(): View
     {
         return view('auth.login');
     }

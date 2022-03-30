@@ -17,6 +17,7 @@ class BookStoreController extends Controller
     {
         $book = Book::query()->create($request->only(['title', 'author']));
 
+        // @phpstan-ignore-next-line
         $request->user()->books()->attach($book, [
             'status' => $request->get('status'),
         ]);

@@ -10,7 +10,7 @@ class BookPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, Book $book)
+    public function update(User $user, Book $book): bool
     {
         return $user->books->contains($book);
     }

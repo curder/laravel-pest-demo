@@ -15,6 +15,7 @@ class BookPutRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // @phpstan-ignore-next-line
         return $this->user()->can('update', $this->book);
     }
 
