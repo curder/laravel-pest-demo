@@ -40,8 +40,10 @@ it('can accept friends', function () {
     $user->addFriend($friend);
     $friend->acceptFriend($user);
 
-    expect($user->acceptedFriendsOfMine)->toHaveCount(1);
-    expect($user->acceptedFriendsOfMine->pluck('id'))->toContain($friend->id);
+    expect($user->acceptedFriendsOfMine)
+        ->toHaveCount(1)
+        ->pluck('id')->toContain($friend->id)
+    ;
 });
 
 it('can get all friends', function () {
@@ -71,6 +73,10 @@ it('can remove a friend', function () {
     $friend->acceptFriend($user);
     $user->removeFriend($friend);
 
-    expect($user->friends)->toHaveCount(0);
-    expect($friend->friends)->toHaveCount(0);
+    expect($user->friends)
+        ->toBeInstanceOf(\Illuminate\Support\Collection::class)
+        ->toHaveCount(0);
+    expect($friend->friends)
+        ->toBeInstanceOf(\Illuminate\Support\Collection::class)
+        ->toHaveCount(0);
 });
