@@ -10,6 +10,9 @@
             <div class="space-y-1">
                 <label for="email" class="block">Email address</label>
                 <input type="email" name="email" id="email" placeholder="e.g. you@example.com" class="rounded block w-full" />
+                @error('email')
+                    <div class="text-xs text-red-600">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="bg-slate-200 hover:bg-slate-300 px-3 py-2 rounded">
