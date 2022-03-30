@@ -7,9 +7,7 @@ uses(LazilyRefreshDatabase::class);
 
 beforeEach(fn () => $this->user = User::factory()->create());
 
-it('only allows authenticated users to post')
-    ->post('/books')
-    ->assertStatus(302);
+it('only allows authenticated users to post')->expectGuest()->toBeRedirectedFor('/books', 'post');
 
 it('creates a book', function () {
     actingAs($this->user)

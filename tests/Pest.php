@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Pest\Expectation;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
@@ -29,7 +30,9 @@ uses(Tests\TestCase::class)->in('Feature');
 */
 
 expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'get') {
-    actingAs($this->value)->{$method}($url)->assertStatus(Response::HTTP_FOUND);
+    $response = !$this->value ? test()->{$method}($url) : actingAs($this->value)->{$method}($url);
+
+    $response->assertStatus(Response::HTTP_FOUND);
 });
 
 /*
@@ -43,7 +46,13 @@ expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'g
 |
 */
 
-function actingAs(Authenticatable $user)
+function actingAs(Authenticatable $user): TestCase
 {
     return test()->actingAs($user);
+}
+
+
+function expectGuest(): Expectation
+{
+    return test()->expect(null);
 }
