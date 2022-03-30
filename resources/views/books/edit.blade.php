@@ -2,8 +2,9 @@
 
     <x-slot name="header">Edit book</x-slot>
 
-    <form action="/books" method="post" class="mt-4 space-y-4" >
+    <form action="{{ route('books.update', $book) }}" method="post" class="mt-4 space-y-4" >
         @csrf
+        @method('put')
 
         <div class="space-y-1">
             <label for="title" class="block">Title</label>

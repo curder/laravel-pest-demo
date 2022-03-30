@@ -22,7 +22,7 @@
                         @foreach($books as $book)
                             <x-book :book="$book">
                                 <x-slot name="links">
-                                    Links
+                                    <a class="text-blue-500 hover:text-blue-600 text-sm" href="{{ route('books.edit', $book) }}">Edit</a>
                                 </x-slot>
                             </x-book>
                         @endforeach
