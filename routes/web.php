@@ -14,7 +14,7 @@ use App\Http\Controllers\BookStoreController;
 use App\Http\Controllers\BookCreateController;
 use App\Http\Controllers\RegisterIndexController;
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('index');
 
 Route::get('auth/register', RegisterIndexController::class)->name('register');
 Route::get('auth/login', LoginController::class)->name('login');

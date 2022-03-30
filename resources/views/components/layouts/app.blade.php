@@ -24,7 +24,7 @@
 
             <ul>
                 <li>
-                    <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">My books</a>
+                    <a href="{{ route('index') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">My books</a>
                 </li>
                 <li>
                     <a href="{{ route('books.create') }}"
@@ -50,7 +50,7 @@
         @guest
             <ul>
                 <li>
-                    <a href="/" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Home</a>
+                    <a href="{{ route('index') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Home</a>
                 </li>
             </ul>
 
