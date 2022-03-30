@@ -6,6 +6,10 @@ use Illuminate\Contracts\View\View;
 
 class RegisterIndexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
     /**
      * @return View
      */

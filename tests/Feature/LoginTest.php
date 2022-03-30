@@ -1,16 +1,14 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use function Pest\Laravel\post;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
 it('redirects authenticated user', function() {
-    actingAs(User::factory()->create())
-         ->get('/auth/login')
-         ->assertRedirect('/');
+    expect(User::factory()->create())
+        ->toBeRedirectedFor('/auth/login');
 });
 
 it('shows an errors if the details are not provided')

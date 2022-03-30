@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 /*
@@ -27,8 +28,8 @@ uses(Tests\TestCase::class)->in('Feature');
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'get') {
+    actingAs($this->value)->{$method}($url)->assertStatus(Response::HTTP_FOUND);
 });
 
 /*
@@ -42,7 +43,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function actingAs(Authenticatable $user): TestCase
+function actingAs(Authenticatable $user)
 {
     return test()->actingAs($user);
 }
