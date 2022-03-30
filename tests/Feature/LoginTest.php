@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
@@ -10,6 +11,8 @@ it('redirects authenticated user', function() {
     expect(User::factory()->create())
         ->toBeRedirectedFor('/auth/login');
 });
+
+it('shows the login page')->get('/auth/login')->assertOk();
 
 it('shows an errors if the details are not provided')
     ->post('/login')
