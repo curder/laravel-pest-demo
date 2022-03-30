@@ -21,7 +21,7 @@ class FriendStoreController extends Controller
                 'required',
                 'exists:users,email',
                 // @phpstan-ignore-next-line
-                Rule::notIn($request->user()->email),
+                Rule::notIn($request->user()->email, ...$request->user()->friends->pluck('email')),
             ],
         ]);
 
