@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Pivot\BookUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BookStoreController extends Controller
 {
@@ -16,20 +18,20 @@ class BookStoreController extends Controller
 
     public function __invoke(Request $request) : RedirectResponse
     {
-
         $request->validate([
             'title' => 'required',
             'author' => 'required',
-            'status' => 'required',
+            'status' => [
+                'required',
+                Rule::in(array_keys(BookUser::$statuses))
+            ],
         ]);
 
         $book = Book::query()->create($request->only(['title', 'author']));
 
-
         $request->user()->books()->attach($book, [
             'status' => $request->get('status'),
         ]);
-
 
         return redirect('/');
     }
