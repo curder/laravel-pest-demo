@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property integer $id
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -60,6 +63,13 @@ class User extends Authenticatable
         ], false);
     }
 
+    public function acceptFriend(User $friend): void
+    {
+        $friend->friendsOfMine()->updateExistingPivot($this->id, [
+            'accepted' => true,
+        ]);
+    }
+
     public function friendsOfMine(): BelongsToMany
     {
         return $this->belongsToMany(__CLASS__, 'friends', 'user_id', 'friend_id')
@@ -82,5 +92,10 @@ class User extends Authenticatable
     public function pendingFriendsOf(): BelongsToMany
     {
         return $this->friendsOf()->wherePivot('accepted', false);
+    }
+
+    public function acceptedFriendsOfMine(): BelongsToMany
+    {
+        return $this->friendsOfMine()->wherePivot('accepted', true);
     }
 }

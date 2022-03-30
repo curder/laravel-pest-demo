@@ -22,3 +22,24 @@ it('can have friend requests', function () {
 
     expect($user->pendingFriendsOf)->toHaveCount(1);
 });
+
+it('does not create duplicate friend requests', function () {
+    $user = User::factory()->create();
+    $friend = User::factory()->create();
+
+    $user->addFriend($friend);
+    $user->addFriend($friend);
+
+    expect($user->pendingFriendsOfMine)->not()->toHaveCount(2);
+});
+
+it('can accept friends', function () {
+    $user = User::factory()->create();
+    $friend = User::factory()->create();
+
+    $user->addFriend($friend);
+    $friend->acceptFriend($user);
+
+    expect($user->acceptedFriendsOfMine)->toHaveCount(1);
+    expect($user->acceptedFriendsOfMine->pluck('id'))->toContain($friend->id);
+});
