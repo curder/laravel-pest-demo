@@ -36,5 +36,4 @@ it('shows books of friends', function () {
             $friend->name . ' is reading ' . $book->title,
             $another_friend->name . ' wants to read ' . $another_book->title,
         ]);
-
 });

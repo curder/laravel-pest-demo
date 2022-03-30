@@ -19,10 +19,11 @@ class Book extends Model
     protected $fillable = [
         'title', 'author',
     ];
+
     /**
      * @return BelongsToMany
      */
-    public function user() : BelongsToMany
+    public function user(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
                     ->withPivot('status')
