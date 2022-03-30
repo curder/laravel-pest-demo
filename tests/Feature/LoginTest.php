@@ -8,9 +8,7 @@ use function Pest\Laravel\post;
 uses(LazilyRefreshDatabase::class);
 
 it('redirects authenticated user', function() {
-    $user = User::factory()->create();
-
-    $this->actingAs($user)
+    actingAs(User::factory()->create())
          ->get('/auth/login')
          ->assertRedirect('/');
 });
