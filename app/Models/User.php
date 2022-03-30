@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public function booksOfFriends(): HasManyDeep
     {
-        return $this->hasManyDeepFromRelations($this->friends(), (new static())->books())
+        return $this->hasManyDeepFromRelations($this->friends(), (new self())->books())
                     ->withIntermediate(BookUser::class)
                     ->latest('__book_user__updated_at');
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -18,9 +19,10 @@ class Book extends Model
     protected $fillable = [
         'title', 'author',
     ];
-
-
-    public function user()
+    /**
+     * @return BelongsToMany
+     */
+    public function user() : BelongsToMany
     {
         return $this->belongsToMany(User::class)
                     ->withPivot('status')

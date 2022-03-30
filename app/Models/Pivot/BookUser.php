@@ -14,8 +14,13 @@ class BookUser extends Pivot
         'READING' => 'Reading',
         'READ' => 'Read',
     ];
+
+    /**
+     * @return string
+     */
     public function getActionAttribute(): string
     {
+        // @phpstan-ignore-next-line
         return match ($this->status) {
             'WANT_TO_READ' => 'wants to read',
             'READING' => 'is reading',
