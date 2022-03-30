@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
+use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Staudenmeir\LaravelMergedRelations\Eloquent\HasMergedRelationships;
 use Staudenmeir\LaravelMergedRelations\Eloquent\Relations\MergedRelation;
 
@@ -23,6 +25,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasMergedRelationships;
+    use HasRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -60,6 +63,13 @@ class User extends Authenticatable
                     ->using(BookUser::class)
                     ->withPivot(['status'])
                     ->withTimestamps();
+    }
+
+    public function booksOfFriends(): HasManyDeep
+    {
+        return $this->hasManyDeepFromRelations($this->friends(), (new static)->books())
+                    ->withIntermediate(BookUser::class)
+                    ->latest('__book_user__updated_at');
     }
 
     public function friends(): MergedRelation

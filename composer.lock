@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "223360721e0f2e5dc60b3cc6573c917c",
+    "content-hash": "ce29fafed165e3162bbf535929b79cdd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2655,6 +2655,42 @@
                 "uuid"
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-has-many-deep",
+            "version": "v1.15.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.tencent.com/repository/composer/staudenmeir/eloquent-has-many-deep/v1.15.1/staudenmeir-eloquent-has-many-deep-v1.15.1.zip",
+                "reference": "c21dcb2bfa9618e8eaaeda95541d2ffb3f421ecd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0",
+                "php": "^8.0.2"
+            },
+            "require-dev": {
+                "illuminate/pagination": "^9.0",
+                "phpunit/phpunit": "^9.5",
+                "staudenmeir/eloquent-eager-limit": "^1.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentHasManyDeep\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel Eloquent HasManyThrough relationships with unlimited levels",
+            "time": "2022-03-15T20:45:07+00:00"
         },
         {
             "name": "staudenmeir/laravel-merged-relations",

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
@@ -79,4 +80,37 @@ it('can remove a friend', function () {
     expect($friend->friends)
         ->toBeInstanceOf(\Illuminate\Support\Collection::class)
         ->toHaveCount(0);
+});
+
+it('can get books of friends', function () {
+    $user = User::factory()->create();
+    $friend = User::factory()->create();
+    $another_friend = User::factory()->create();
+    $yet_another_friend = User::factory()->create();
+
+    $friend->books()->attach($book = Book::factory()->create(), [
+        'status' => 'WANT_TO_READ',
+        'updated_at' => now()->subDay(),
+    ]);
+
+    $another_friend->books()->attach($another_book = Book::factory()->create(), [
+        'status' => 'WANT_TO_READ',
+        'updated_at' => now()->addDay(),
+    ]);
+
+    $yet_another_friend->books()->attach($yet_another_book = Book::factory()->create(), [
+        'status' => 'WANT_TO_READ',
+    ]);
+
+    $user->addFriend($friend);
+    $friend->acceptFriend($user);
+
+    $another_friend->addFriend($user);
+    $user->acceptFriend($another_friend);
+
+    $user->addFriend($yet_another_friend);
+
+    expect($user->booksOfFriends)
+        ->toHaveCount(2)
+        ->first()->title->toBe($another_book->title);
 });
