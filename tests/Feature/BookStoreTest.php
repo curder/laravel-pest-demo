@@ -39,4 +39,3 @@ it('requires a valid status')
         'status' => 'ERROR_STATUS',
     ])
     ->assertSessionHasErrors(['status']);
-

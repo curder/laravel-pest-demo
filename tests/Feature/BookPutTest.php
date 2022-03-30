@@ -41,7 +41,6 @@ it('false if the user does not own the book', function () {
 });
 
 it('updates the book', function () {
-
     $user = User::factory()->create();
     $user->books()->attach($book = Book::factory()->create(), [
         'status' => 'READING',
@@ -63,5 +62,4 @@ it('updates the book', function () {
         'book_id' => $book->id,
         'status' => 'WANT_TO_READ',
     ]);
-
 });

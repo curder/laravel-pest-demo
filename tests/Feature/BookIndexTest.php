@@ -8,7 +8,7 @@ uses(LazilyRefreshDatabase::class);
 
 beforeEach(fn () => $this->user = User::factory()->create());
 
-it('shows books with the correct status', function(string $status, string $heading) {
+it('shows books with the correct status', function (string $status, string $heading) {
     $this->user?->books()->attach($book = Book::factory()->create(), [
         'status' => $status,
     ]);

@@ -10,6 +10,7 @@ class RegisterIndexController extends Controller
     {
         $this->middleware(['guest']);
     }
+
     /**
      * @return View
      */

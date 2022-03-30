@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
-it('can have pending friends', function() {
+it('can have pending friends', function () {
     $user = User::factory()->create();
     $friend = User::factory()->create();
 

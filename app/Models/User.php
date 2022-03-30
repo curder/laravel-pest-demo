@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function friendsOfMine(): BelongsToMany
     {
-       return $this->belongsToMany(__CLASS__, 'friends', 'user_id', 'friend_id')
+        return $this->belongsToMany(__CLASS__, 'friends', 'user_id', 'friend_id')
                    ->withPivot('accepted')
                    ->withTimestamps();
     }
@@ -73,7 +73,6 @@ class User extends Authenticatable
                     ->withPivot('accepted')
                     ->withTimestamps();
     }
-
 
     public function pendingFriendsOfMine(): BelongsToMany
     {

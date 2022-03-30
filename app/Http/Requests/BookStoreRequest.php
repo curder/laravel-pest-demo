@@ -30,7 +30,7 @@ class BookStoreRequest extends FormRequest
             'author' => 'required',
             'status' => [
                 'required',
-                Rule::in(array_keys(BookUser::$statuses))
+                Rule::in(array_keys(BookUser::$statuses)),
             ],
         ];
     }

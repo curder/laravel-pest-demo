@@ -30,7 +30,7 @@ uses(Tests\TestCase::class)->in('Feature', 'Unit');
 */
 
 expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'get') {
-    $response = !$this->value ? test()->{$method}($url) : actingAs($this->value)->{$method}($url);
+    $response = ! $this->value ? test()->{$method}($url) : actingAs($this->value)->{$method}($url);
 
     $response->assertStatus(Response::HTTP_FOUND);
 });

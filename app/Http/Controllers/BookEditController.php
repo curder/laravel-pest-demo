@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class BookEditController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth']);
