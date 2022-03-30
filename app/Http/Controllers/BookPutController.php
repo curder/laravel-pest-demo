@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
-use App\Models\Pivot\BookUser;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\BookPutRequest;
 use Illuminate\Routing\Redirector;
 
 class BookPutController extends Controller
@@ -16,20 +14,10 @@ class BookPutController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function __invoke(Book $book, Request $request): Redirector
+    public function __invoke(Book $book, BookPutRequest $request): Redirector
     {
-        $this->authorize('update', $book);
-
-        $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'status' => [
-                'required',
-                Rule::in(array_keys(BookUser::$statuses))
-            ],
-        ]);
-
         $book->update($request->only(['title', 'author'])); // 更新books
+
         $request->user()->books()->updateExistingPivot($book, [
             'status' => $request->get('status')
         ]); // 更新关联表

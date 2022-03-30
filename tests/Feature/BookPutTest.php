@@ -32,7 +32,11 @@ it('false if the user does not own the book', function () {
     ]);
 
     actingAs($user)
-        ->put('/books/' . $book->id)
+        ->put('/books/' . $book->id, [
+            'title' => 'Updated Title',
+            'author' => 'Updated Author',
+            'status' => 'WANT_TO_READ',
+        ])
         ->assertForbidden();
 });
 
