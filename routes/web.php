@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookPutController;
+use App\Http\Controllers\FriendIndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -18,3 +19,6 @@ Route::put('books/{book}', BookPutController::class)->name('books.update');
 Route::get('books/create', BookCreateController::class)->name('books.create');
 Route::post('books', BookStoreController::class)->name('books.store');
 Route::get('books/{book}/edit', BookEditController::class)->name('books.edit');
+
+
+Route::get('friends', FriendIndexController::class)->name('friends.index');

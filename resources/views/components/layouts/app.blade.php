@@ -31,7 +31,7 @@
                        class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Add a books</a>
                 </li>
                 <li>
-                    <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Friend</a>
+                    <a href="{{ route('friends.index') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Friends</a>
                 </li>
             </ul>
 
