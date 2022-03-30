@@ -18,7 +18,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Feed</a>
+                    <a href="{{ route('feeds.index') }}" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Feed</a>
                 </li>
             </ul>
 

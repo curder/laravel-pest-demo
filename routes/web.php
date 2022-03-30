@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookPutController;
+use App\Http\Controllers\FeedIndexController;
 use App\Http\Controllers\FriendDestroyController;
 use App\Http\Controllers\FriendIndexController;
 use App\Http\Controllers\FriendPatchController;
@@ -27,3 +28,5 @@ Route::get('friends', FriendIndexController::class)->name('friends.index');
 Route::post('friends', FriendStoreController::class)->name('friends.store');
 Route::patch('friends/{friend}', FriendPatchController::class)->name('friends.update');
 Route::delete('friends/{friend}', FriendDestroyController::class)->name('friends.destroy');
+
+Route::get('feeds', FeedIndexController::class)->name('feeds.index');
