@@ -8,7 +8,7 @@
         @foreach($requesting_friends as $requesting_friend)
             {{ $requesting_friend->name }} ({{ $requesting_friend->email }})
 
-            <form action="/friends/{{ $requesting_friend->id }}" method="post">
+            <form action="/friends/{{ $requesting_friend->id }}" method="post" class="inline">
                 @csrf
                 @method('PATCH')
 

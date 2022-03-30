@@ -8,7 +8,7 @@
         @foreach($friends as $friend)
             {{ $friend->name }} ({{ $friend->email }})
 
-            <form action="/friends/{{ $friend->id }}" method="post">
+            <form action="/friends/{{ $friend->id }}" method="post" class="inline">
                 @csrf
                 @method('DELETE')
 
