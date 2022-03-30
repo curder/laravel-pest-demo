@@ -8,36 +8,17 @@ uses(LazilyRefreshDatabase::class);
 
 beforeEach(fn () => $this->user = User::factory()->create());
 
-it('shows books the use wants to read', function() {
+it('shows books with the correct status', function(string $status, string $heading) {
     $this->user?->books()->attach($book = Book::factory()->create(), [
-        'status' => 'WANT_TO_READ',
+        'status' => $status,
     ]);
 
     actingAs($this->user)
         ->get('/')
-        ->assertSeeTextInOrder(['Want to read', $book->title])
+        ->assertSeeTextInOrder([$heading, $book->title])
     ;
-});
-
-it('shows books the use reading', function() {
-    $this->user?->books()->attach($book = Book::factory()->create(), [
-        'status' => 'READING',
-    ]);
-
-    actingAs($this->user)
-        ->get('/')
-        ->assertSeeTextInOrder(['Reading', $book->title])
-    ;
-});
-
-
-it('shows books the use read', function() {
-    $this->user?->books()->attach($book = Book::factory()->create(), [
-        'status' => 'READ',
-    ]);
-
-    actingAs($this->user)
-        ->get('/')
-        ->assertSeeTextInOrder(['Read', $book->title])
-    ;
-});
+})->with([
+    ['status' => 'WANT_TO_READ', 'heading' => 'Want to read'],
+    ['status' => 'READING', 'heading' => 'Reading'],
+    ['status' => 'READ', 'heading' => 'Read'],
+]);
