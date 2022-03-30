@@ -12,7 +12,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit" class="text-blue-500 hover:text-blue-600">Delete</button>
+                <button type="submit" class="text-red-500 hover:text-red-600">Delete</button>
             </form>
         @endforeach
 
