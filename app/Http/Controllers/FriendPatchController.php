@@ -13,8 +13,7 @@ class FriendPatchController extends Controller
         $this->middleware(['auth']);
     }
 
-
-    public function __invoke(Request $request, User $friend) : RedirectResponse
+    public function __invoke(Request $request, User $friend): RedirectResponse
     {
         $request->user()?->pendingFriendsOf()->updateExistingPivot($friend->id, [
             'accepted' => true,
