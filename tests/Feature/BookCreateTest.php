@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
- beforeEach(fn () => $this->user = User::factory()->create());
+beforeEach(fn () => $this->user = User::factory()->create());
 
 it('only allows authenticated users')->expectGuest()->toBeRedirectedFor('/books/create', 'get');
 
