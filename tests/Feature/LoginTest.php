@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
 use function Pest\Laravel\post;
 
 uses(LazilyRefreshDatabase::class);

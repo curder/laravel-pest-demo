@@ -19,7 +19,7 @@ it('shows the book details in the form', function () {
        ->get('/books/' . $book->id . '/edit')
        ->assertOk()
        ->assertSeeInOrder([$book->title, $book->author, '<option value="READING" selected>'], false)
-       ;
+    ;
 });
 
 it('false if the user does not own the book', function () {
